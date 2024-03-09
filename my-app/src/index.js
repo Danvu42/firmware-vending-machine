@@ -6,7 +6,6 @@ import './style.css'; // Import your existing style.css file
 import CSVParser from './CSVParser';
 import styled from 'styled-components';
 
-
 // Styled component for the centered image
 const CenteredImage = styled.img`
   display: block;
@@ -17,19 +16,23 @@ const CenteredImage = styled.img`
 
 // Styled component for the heading
 const Heading = styled.h1`
-  font-family: 'Jazz LET', fantasy;
+  font-family: 'Roboto', sans-serif; /* Use Roboto font */
+  font-weight: 700; /* Bold */
   color: Green; /* Change color to green */
+  display: flex;
+  align-items: center; /* Align items vertically */
 `;
 
 // Styled component for the Navbar
 const StyledNavbar = styled(Navbar)`
-  background-color: Green; 
+  background-color: Green; /* Dark grey background */
 `;
 
 // Styled component for the image
 const NavbarImage = styled.img`
-  max-width: 30px; /* Adjust the size of the image */
+  max-width: 20px; /* Adjust the size of the image */
   border-radius: 50%; /* Make the framing of the image a circle */
+  margin-left: auto; /* Push the image to the right */
 `;
 
 // Navbar.Brand styled component
@@ -44,10 +47,10 @@ function App() {
     <div className="App">
       {/* Navbar */}
       <StyledNavbar variant="dark" expand="lg">
-        {/* Centered Navbar Brand */}
-        <CenteredNavbarBrand href="#">SMART CAMPUS ENERGY LAB</CenteredNavbarBrand>
         {/* Add the image at the top right corner */}
         <NavbarImage src="https://avatars.githubusercontent.com/u/7014873?s=200&v=4" alt="Avatar" />
+        {/* Centered Navbar Brand */}
+        <CenteredNavbarBrand href="#">SMART CAMPUS ENERGY LAB</CenteredNavbarBrand>
       </StyledNavbar>
 
       {/* Add the centered image */}
@@ -56,7 +59,7 @@ function App() {
       {/* Add the heading with the photo */}
       <Heading>
         SCEL VENDING MACHINE
-        <img src="/SCEL_Icon.png" alt="Icon" style={{ marginRight: '100px',maxWidth: '150px' }} />
+        <img src="/SCEL_Icon.png" alt="Icon" style={{ marginLeft: '10px', maxWidth: '20px' }} /> {/* Adjust margin-left and max-width for spacing and size */}
       </Heading>
 
       {/* Add the CSV Parser component */}
