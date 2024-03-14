@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const CSVParser = () => {
@@ -47,12 +46,12 @@ const CSVParser = () => {
   const filteredData = filterDataByDate();
 
   const downloadCSV = () => {
-    const csvContent = csvData.map(row => row.join(',')).join('\n');
+    const csvContent = filteredData.map(row => row.join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'parsed_data.csv');
+    link.setAttribute('download', 'filtered_data.csv');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
