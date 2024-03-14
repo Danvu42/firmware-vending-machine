@@ -16,7 +16,7 @@ const CenteredImage = styled.img`
 
 // Styled component for the heading
 const Heading = styled.h1`
-  font-family: 'Roboto', sans-serif; /* Use Roboto font */
+  font-family: 'Roboto', fantasy; /* Use Roboto font */
   font-weight: 700; /* Bold */
   color: Green; /* Change color to green */
   display: flex;
@@ -30,16 +30,20 @@ const StyledNavbar = styled(Navbar)`
 
 // Styled component for the image
 const NavbarImage = styled.img`
-  max-width: 20px; /* Adjust the size of the image */
+  position: absolute;
+  top: 5px; /* Adjust the distance from the top */
+  right: 5px; /* Adjust the distance from the right */
+  max-width: 40px; /* Adjust the size of the image */
   border-radius: 50%; /* Make the framing of the image a circle */
-  margin-left: auto; /* Push the image to the right */
 `;
+
 
 // Navbar.Brand styled component
 const CenteredNavbarBrand = styled(Navbar.Brand)`
   display: block;
   margin: auto;
   text-align: center;
+  width: 100%; /* Ensure the Navbar.Brand takes up the full width */
 `;
 
 function App() {
@@ -59,7 +63,7 @@ function App() {
       {/* Add the heading with the photo */}
       <Heading>
         SCEL VENDING MACHINE
-        <img src="/SCEL_Icon.png" alt="Icon" style={{ marginLeft: '10px', maxWidth: '20px' }} /> {/* Adjust margin-left and max-width for spacing and size */}
+        <img src="/SCEL_Icon.png" alt="Icon" style={{ marginRight: '10px', maxWidth: '100px' }} /> {/* Adjust margin-left and max-width for spacing and size */}
       </Heading>
 
       {/* Add the CSV Parser component */}
