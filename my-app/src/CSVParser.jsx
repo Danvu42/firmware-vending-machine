@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const CSVParser = () => {
@@ -45,6 +46,18 @@ const CSVParser = () => {
 
   const filteredData = filterDataByDate();
 
+  const downloadCSV = () => {
+    const csvContent = csvData.map(row => row.join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'parsed_data.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div>
       <h2>CSV Parser</h2>
@@ -59,12 +72,26 @@ const CSVParser = () => {
       <input type="file" accept=".csv" onChange={handleFileUpload} />
       {filteredData.length > 0 && (
         <div>
+          <button onClick={downloadCSV}>Download CSV</button>
           <h3>Parsed Data:</h3>
-          <ul>
-            {filteredData.map((row, index) => (
-              <li key={index}>{JSON.stringify(row)}</li>
+          <table>
+            <thead>
+            <tr>
+              {csvData[0].map((header, index) => (
+                <th key={index}>{header}</th>
+              ))}
+            </tr>
+            </thead>
+            <tbody>
+            {filteredData.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex}>{cell}</td>
+                ))}
+              </tr>
             ))}
-          </ul>
+            </tbody>
+          </table>
         </div>
       )}
     </div>
