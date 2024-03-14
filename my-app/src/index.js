@@ -16,7 +16,7 @@ const CenteredImage = styled.img`
 
 // Styled component for the heading
 const Heading = styled.h1`
-  font-family: 'Helvetica', fantasy; /* Use Roboto font */
+  font-family: 'Arial', comic-sans; /* Use Roboto font */
   font-weight: 700; /* Bold */
   color: Green; /* Change color to green */
   display: flex;

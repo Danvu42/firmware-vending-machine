@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const CSVParser = () => {
@@ -45,6 +46,9 @@ const CSVParser = () => {
 
   const filteredData = filterDataByDate();
 
+  const parameters = ["apogee_w_m2","batt_mv","humidity_centi_pct","node_addr","panel_mv","press_pa","schema","temp_c","time_received","uptime_ms"];
+  const sampleData = ["603.5","3846","34","65535","4977","100954","1","374","2022-10-25 13:41:33.314048","1030320000"];
+
   return (
     <div>
       <h2>CSV Parser</h2>
@@ -60,11 +64,22 @@ const CSVParser = () => {
       {filteredData.length > 0 && (
         <div>
           <h3>Parsed Data:</h3>
-          <ul>
-            {filteredData.map((row, index) => (
-              <li key={index}>{JSON.stringify(row)}</li>
-            ))}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                {parameters.map((param, index) => (
+                  <th key={index}>{param}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {sampleData.map((value, index) => (
+                  <td key={index}>{value}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
     </div>
