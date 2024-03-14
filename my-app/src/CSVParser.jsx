@@ -46,8 +46,17 @@ const CSVParser = () => {
 
   const filteredData = filterDataByDate();
 
-  const parameters = ["apogee_w_m2","batt_mv","humidity_centi_pct","node_addr","panel_mv","press_pa","schema","temp_c","time_received","uptime_ms"];
-  const sampleData = ["603.5","3846","34","65535","4977","100954","1","374","2022-10-25 13:41:33.314048","1030320000"];
+  const downloadCSV = () => {
+    const csvContent = csvData.map(row => row.join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'parsed_data.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div>
@@ -63,21 +72,24 @@ const CSVParser = () => {
       <input type="file" accept=".csv" onChange={handleFileUpload} />
       {filteredData.length > 0 && (
         <div>
+          <button onClick={downloadCSV}>Download CSV</button>
           <h3>Parsed Data:</h3>
           <table>
             <thead>
-              <tr>
-                {parameters.map((param, index) => (
-                  <th key={index}>{param}</th>
-                ))}
-              </tr>
+            <tr>
+              {csvData[0].map((header, index) => (
+                <th key={index}>{header}</th>
+              ))}
+            </tr>
             </thead>
             <tbody>
-              <tr>
-                {sampleData.map((value, index) => (
-                  <td key={index}>{value}</td>
+            {filteredData.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex}>{cell}</td>
                 ))}
               </tr>
+            ))}
             </tbody>
           </table>
         </div>
